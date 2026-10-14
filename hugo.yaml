@@ -1,6 +1,9 @@
-baseURL: "https://examplesite.com/"
-title: ExampleSite
-paginate: 5
+baseURL: https://myblog-3q6.pages.dev/
+defaultContentLanguage: zh-tw
+hasCJKLanguage: true
+
+pagination:
+  pagerSize: 5
 theme: PaperMod
 
 enableRobotsTXT: true
@@ -12,126 +15,116 @@ minify:
   disableXML: true
   minifyOutput: true
 
+# 所有語言共用
 params:
-  env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: ExampleSite
-  description: "ExampleSite description"
-  keywords: [Blog, Portfolio, PaperMod]
-  author: Me
-  # author: ["Me", "You"] # multiple authors
-  images: ["<link or path of image for opengraph, twitter-cards>"]
-  DateFormat: "January 2, 2006"
-  defaultTheme: auto # dark, light
+  env: production
+  images: ["/example.png"] # 圖標 [ og:image ] ( 修改 )
+  defaultTheme: auto
   disableThemeToggle: false
 
   ShowReadingTime: true
+  ShowWordCount: true
+  hidemeta: false
+  hideSummary: false
+  disableSpecial1stPost: true
+
   ShowShareButtons: true
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: false
-  ShowWordCount: true
   ShowRssButtonInSectionTermList: true
   UseHugoToc: true
-  disableSpecial1stPost: false
   disableScrollToTop: false
   comments: false
-  hidemeta: false
-  hideSummary: false
   showtoc: false
   tocopen: false
 
+  # 你的網頁標題旁邊的圖標 ( 修改 )
   assets:
-    # disableHLJS: true # to disable highlight.js
-    # disableFingerprinting: true
-    favicon: "<link / abs url>"
-    favicon16x16: "<link / abs url>"
-    favicon32x32: "<link / abs url>"
-    apple_touch_icon: "<link / abs url>"
-    safari_pinned_tab: "<link / abs url>"
-
-  label:
-    text: "Home"
-    icon: /apple-touch-icon.png
-    iconHeight: 35
-
-  # profile-mode
-  profileMode:
-    enabled: false # needs to be explicitly set
-    title: ExampleSite
-    subtitle: "This is subtitle"
-    imageUrl: "<img location>"
-    imageWidth: 120
-    imageHeight: 120
-    imageTitle: my image
-    buttons:
-      - name: Posts
-        url: posts
-      - name: Tags
-        url: tags
-
-  # home-info mode
-  homeInfoParams:
-    Title: "Hi there \U0001F44B"
-    Content: Welcome to my blog
-
-  socialIcons:
-    - name: x
-      url: "https://x.com/"
-    - name: stackoverflow
-      url: "https://stackoverflow.com"
-    - name: github
-      url: "https://github.com/"
-
-  analytics:
-    google:
-      SiteVerificationTag: "XYZabc"
-    bing:
-      SiteVerificationTag: "XYZabc"
-    yandex:
-      SiteVerificationTag: "XYZabc"
+    favicon: "/example.png"
+    favicon16x16: "/example.png"
+    favicon32x32: "/example.png"
 
   cover:
-    hidden: true # hide everywhere but not in structured data
-    hiddenInList: true # hide on list pages and home
-    hiddenInSingle: true # hide on single page
+    hidden: true
+    hiddenInList: true
+    hiddenInSingle: true
 
-  editPost:
-    URL: "https://github.com/<path_to_repo>/content"
-    Text: "Suggest Changes" # edit text
-    appendFilePath: true # to append file path to Edit link
+# 各語言各自的內容
+languages:
+  zh-tw:
+    label: "中文" # 切換按鈕上的文字 ( 修改 )
+    locale: zh-TW
+    contentDir: content/zh-tw
+    weight: 1
+    title: ExampleSite # 你的網頁標題 [ og:site_name / 首頁 og:title ] ( 修改 )
+    params:
+      description: "ExampleSite description" # 敘述 [ og:description ] ( 修改 )
+      keywords: [部落格, 筆記] # 關鍵字 ( 修改 )
+      author: Me # 作者名稱 ( 修改 )
+      DateFormat: "2006 年 1 月 2 日"
+      label:
+        text: "Home" # LOGO 文字 ( 修改 )
+        icon: /example.png # Logo 圖片 ( 修改 )
+        iconHeight: 35
+      # 首頁自我介紹 ( 修改 )
+      homeInfoParams:
+        Title: "你想講的一句話" # 首頁標題 ( 修改 )
+        Content: |
+          第一段自我介紹
 
-  # for search
-  # https://fusejs.io/api/options.html
-  fuseOpts:
-    isCaseSensitive: false
-    shouldSort: true
-    location: 0
-    distance: 1000
-    threshold: 0.4
-    minMatchCharLength: 0
-    limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
-    keys: ["title", "permalink", "summary", "content"]
-menu:
-  main:
-    - identifier: categories
-      name: categories
-      url: /categories/
-      weight: 10
-    - identifier: tags
-      name: tags
-      url: /tags/
-      weight: 20
-    - identifier: example
-      name: example.org
-      url: https://example.org
-      weight: 30
-# Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
+          第二段自我介紹
+      # 首頁下方的社群圖示 ( 修改 )
+      socialIcons:
+        - name: instagram
+          url: "https://www.instagram.com/"
+    menu:
+      main:
+        - identifier: posts
+          name: Post
+          url: /posts/
+          weight: 10
+
+  en:
+    label: "English" # 切換按鈕上的文字 ( 修改 )
+    locale: en-US
+    contentDir: content/en
+    weight: 2
+    title: ExampleSite # Site title [ og:title ] ( 修改 )
+    params:
+      description: "ExampleSite description" # [ og:description ] ( 修改 )
+      keywords: [Blog, Notes] # ( 修改 )
+      author: Me # ( 修改 )
+      DateFormat: "January 2, 2006"
+      label:
+        text: "Home" # ( 修改 )
+        icon: /example.png
+        iconHeight: 35
+      # 英文版首頁自我介紹 ( 修改 )
+      homeInfoParams:
+        Title: "Your one-line tagline"
+        Content: |
+          First paragraph of your introduction
+
+          Second paragraph of your introduction
+      socialIcons:
+        - name: instagram
+          url: "https://www.instagram.com/"
+    menu:
+      main:
+        - identifier: posts
+          name: Post
+          url: /en/posts/
+          weight: 10
+
 pygmentsUseClasses: true
 markup:
+  goldmark:
+    renderer:
+      unsafe: true # allow raw HTML, e.g. <img width="300">
+    parser:
+      wrapStandAloneImageWithinParagraph: false # required for image attributes below
+      attribute:
+        block: true # allow {width="300"} on the line after an image
   highlight:
     noClasses: false
-    # anchorLineNos: true
-    # codeFences: true
-    # guessSyntax: true
-    # lineNos: true
-    # style: monokai
